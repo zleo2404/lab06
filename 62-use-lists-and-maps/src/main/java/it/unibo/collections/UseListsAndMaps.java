@@ -69,19 +69,34 @@ public final class UseListsAndMaps {
          */
 
          long time = System.nanoTime();
-
          for(int i=0; i< 100000;i++){
-            list.addFirst(i);
-            linked.addFirst(i);
+            list.add(0, i);
+            
          }
          time = System.nanoTime() - time;
          final var millis = TimeUnit.NANOSECONDS.toMillis(time);
         System.out.println(// NOPMD
             "Inserting 100000 elements "
-                + " in a list and in a linkedlist took "
+                + " in a list took "
                 + time
                 + "ns ("
                 + millis
+                + "ms)"
+        );
+
+        time = System.nanoTime();
+         for(int i=0; i< 100000;i++){
+            
+            linked.addFirst(i);
+         }
+         time = System.nanoTime() - time;
+         final var millis2 = TimeUnit.NANOSECONDS.toMillis(time);
+        System.out.println(// NOPMD
+            "Inserting 100000 elements "
+                + " in a linkedlist took "
+                + time
+                + "ns ("
+                + millis2
                 + "ms)"
         );
 
@@ -96,20 +111,36 @@ public final class UseListsAndMaps {
 
          for(int i=0; i< 1000;i++){
             list.get(list.get((list.size()-1)/2));
-            linked.get(linked.get((linked.size()-1)/2));
+            
          }
 
          time = System.nanoTime() - time;
          final var millis1 = TimeUnit.NANOSECONDS.toMillis(time);
         System.out.println(// NOPMD
             "Reading 1000 elements "
-                + " in a list and in a linkedlist took "
+                + " in a list took "
                 + time
                 + "ns ("
                 + millis1
                 + "ms)"
         );
+        time = System.nanoTime();
 
+        for(int i=0; i< 1000;i++){
+           
+           linked.get(linked.get((linked.size()-1)/2));
+        }
+
+        time = System.nanoTime() - time;
+        final var millis13 = TimeUnit.NANOSECONDS.toMillis(time);
+       System.out.println(// NOPMD
+           "Reading 1000 elements "
+               + "in a linkedlist took "
+               + time
+               + "ns ("
+               + millis13
+               + "ms)"
+       );
         /*
          * 7) Build a new Map that associates to each continent's name its
          * population:
